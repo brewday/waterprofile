@@ -1,0 +1,23 @@
+// Override bootstrap variables with our own
+@import "./variables";
+
+// Core variables and mixins (Bootstrap 4)
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+// Font Awesome variables
+@import "~font-awesome/scss/variables";
+
+@import "./layout";
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+}
+
+app {
+  display: block;
+  width: 100%;
+  min-height: 100%;
+}
