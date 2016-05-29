@@ -1,0 +1,17 @@
+spring.application.name: waterprofile
+
+server.port: 3001
+
+# MVC
+spring.mvc:
+  locale: en_US
+  date-format: yyyy-MM-dd
+
+# JSON
+spring.jackson:
+  date-format: yyyy-MM-dd
+  serialization:
+    write-dates-as-timestamps: false
+
+# Mongo
+spring.data.mongodb.uri: mongodb://localhost/brewday-waterprofile

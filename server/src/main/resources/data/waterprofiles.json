@@ -1,0 +1,41 @@
+[
+  {
+    "_class": "io.brewday.domain.WaterProfile",
+    "id": "574aa54450a27cec126449ce",
+    "city": "Närkes Kil",
+    "treatmentPlant": "Närkes Kil",
+    "notes": null,
+    "url": "http://www.orebro.se/download/18.58d0ca0314c3af6deb655e3/1428565204959/Analysrapport+N%C3%A4rkes+Kil+2014.pdf",
+    "position": {
+      "x": 59.3686707,
+      "y": 15.0740132
+    },
+    "testDate": "2014-12-31",
+    "ph": 8.5,
+    "ca": 19,
+    "mg": 7.1,
+    "na": 32,
+    "s04": 14,
+    "cl": 28,
+    "hc03": 120
+  },
+  {
+    "_class": "io.brewday.domain.WaterProfile",
+    "id": "561f42358f9777e0703e22ce",
+    "city": "Hässleholm",
+    "treatmentPlant": "Hässleholms Vatten",
+    "notes": null,
+    "position": {
+      "x": 56.1619261,
+      "y": 13.7412549
+    },
+    "testDate": "2015-08-25",
+    "ph": 7.9,
+    "ca": 50,
+    "mg": 3.9,
+    "na": 21,
+    "s04": 35,
+    "cl": 27,
+    "hc03": 140
+  }
+]
