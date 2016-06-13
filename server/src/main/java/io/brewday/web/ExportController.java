@@ -6,6 +6,8 @@ import io.brewday.beerxml.BeerXmlDocument;
 import io.brewday.domain.WaterProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,12 +29,13 @@ public class ExportController {
     }
 
     @GetMapping(path = "/profiles/:id/beerxml", produces = MediaType.TEXT_XML_VALUE)
-    public BeerXmlDocument beerXmlExport(@PathVariable("id") WaterProfile waterProfile) {
+    public HttpEntity<BeerXmlDocument> beerXmlExport(@PathVariable("id") WaterProfile waterProfile) {
 
         BeerXmlDocument doc = conversionService.convert(waterProfile, BeerXmlDocument.class);
 
-        //response.setHeader("Content-Disposition", "attachment; filename=somefile.pdf");
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "attachment; filename=\"" + waterProfile.getCity() + " - " + waterProfile.getTreatmentPlant() + "\".xml");
 
-        return doc;
+        return new HttpEntity<>(doc, headers);
     }
 }

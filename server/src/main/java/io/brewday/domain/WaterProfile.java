@@ -1,5 +1,6 @@
 package io.brewday.domain;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.geo.Point;
 import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
@@ -8,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Document(collection = "waterprofiles")
 public class WaterProfile {
@@ -39,6 +41,9 @@ public class WaterProfile {
 
     @DBRef(lazy = true)
     private WaterProfile parent;
+
+    @CreatedDate
+    private LocalDateTime createdDate;
 
     private boolean archived = false;
 
@@ -154,6 +159,14 @@ public class WaterProfile {
 
     public void setParent(WaterProfile parent) {
         this.parent = parent;
+    }
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
     }
 
     public boolean isArchived() {
