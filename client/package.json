@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "BrewDay water profile app",
   "scripts": {
-    "preinstall": "npm install typings -g",
-    "postinstall": "typings install",
-    "start": "webpack-dev-server --progress --watch --env.ENV development --env.HMR",
-    "build": "webpack --env.ENV production",
+    "postinstall": "./node_modules/.bin/typings install",
+    "start": "./node_modules/.bin/webpack-dev-server --progress --watch --env.ENV development --env.HMR",
+    "build": "./node_modules/.bin/webpack --env.ENV production",
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "npm run build"
   },
