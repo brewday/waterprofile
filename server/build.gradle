@@ -61,5 +61,5 @@ eclipse {
 
 // Heroku
 task stage {
-	dependsOn build
+	dependsOn assemble
 }
