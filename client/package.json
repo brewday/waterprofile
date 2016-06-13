@@ -11,8 +11,8 @@
   },
   "author": "Leon radley",
   "engines": {
-    "node": ">6.0.0",
-    "npm": ">3.0.0"
+    "node": "^6.0.0",
+    "npm": "^3.0.0"
   },
   "dependencies": {
     "@angular/common": "2.0.0-rc.1",
