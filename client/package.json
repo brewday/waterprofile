@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "BrewDay water profile app",
   "scripts": {
-    "postinstall": "typings install",
+    "postinstall": "node_modules/typings/dist/bin.js install",
     "start": "webpack-dev-server --progress --watch --env.ENV development --env.HMR",
     "build": "webpack --env.ENV production",
     "test": "echo \"Error: no test specified\" && exit 1",
