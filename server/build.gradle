@@ -18,7 +18,7 @@ apply plugin: 'spring-boot'
 
 jar {
 	baseName = 'waterprofile'
-	version = '0.0.1-SNAPSHOT'
+	version = '1.0.0'
 }
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -31,18 +31,26 @@ repositories {
 
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+	// Tools
 	compile('org.springframework.boot:spring-boot-devtools')
-	compile('org.springframework.boot:spring-boot-starter-web')
 
-	compile("com.fasterxml.jackson.dataformat:jackson-dataformat-xml")
+	// Mongo
+	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+
+	// Web
+	compile('org.springframework.boot:spring-boot-starter-web')
 	compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
 	compile("com.fasterxml.jackson.datatype:jackson-datatype-jdk8")
+	compile("com.fasterxml.jackson.dataformat:jackson-dataformat-xml")
 	compile("org.codehaus.woodstox:woodstox-core-asl:4.4.1")
 
+	// Test
 	testCompile('org.springframework.boot:spring-boot-starter-test') 
 }
 
+bootRun {
+	addResources = true
+}
 
 eclipse {
 	classpath {
