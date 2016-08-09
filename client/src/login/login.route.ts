@@ -1,5 +1,5 @@
 import {Component, ChangeDetectionStrategy} from '@angular/core';
-import {Router, OnActivate, RouteSegment, RouteTree} from '@angular/router';
+import {Router} from '@angular/router';
 import {Store} from '@ngrx/store';
 import {AppState} from '../store';
 
@@ -27,11 +27,8 @@ import {AppState} from '../store';
     </div>
   `
 })
-export default class LoginRoute implements OnActivate  {
+export default class LoginRoute  {
 
   constructor() {}
-
-  routerOnActivate(curr: RouteSegment, prev?: RouteSegment, currTree?: RouteTree, prevTree?: RouteTree): void {
-  }
 
 }

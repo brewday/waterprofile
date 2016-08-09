@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation} from '@angular/core';
-import {Routes} from '@angular/router';
+import {ROUTER_DIRECTIVES} from '@angular/router';
 
 import {TopNavComponent} from './layout/top-nav.component';
 
@@ -9,6 +9,7 @@ import SearchRoute from './search/search.route';
   selector: 'app',
   encapsulation: ViewEncapsulation.None,
   directives: [
+    ROUTER_DIRECTIVES,
     TopNavComponent,
   ],
   template: `
@@ -17,9 +18,6 @@ import SearchRoute from './search/search.route';
     <router-outlet></router-outlet>
   `
 })
-@Routes([
-  { path: '/', component: SearchRoute },
-])
 export default class AppComponent {
 
 }

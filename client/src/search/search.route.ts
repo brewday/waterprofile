@@ -1,13 +1,14 @@
-import {Component, ChangeDetectionStrategy} from '@angular/core';
-import {Router, OnActivate, RouteSegment, RouteTree} from '@angular/router';
+import {Component, ChangeDetectionStrategy, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 import {Store} from '@ngrx/store';
-import {ANGULAR2_GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
+import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
 
 import {AppState} from '../store';
-
-import {SEARCH} from '../search/search.model';
+import {search} from './search.actions';
 
 import {SearchBoxComponent} from './component/search-box.component';
+import {provideLazyMapsAPILoaderConfig} from 'angular2-google-maps/core/services/maps-api-loader/lazy-maps-api-loader';
+import GoogleMap from '../common/component/google-map.component';
 
 @Component({
   moduleId: module.id,
@@ -15,10 +16,13 @@ import {SearchBoxComponent} from './component/search-box.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   directives: [
     SearchBoxComponent,
-    ANGULAR2_GOOGLE_MAPS_DIRECTIVES
+    GoogleMap,
+    /*GOOGLE_MAPS_DIRECTIVES,
+    provideLazyMapsAPILoaderConfig({ apiKey: 'myKey', clientId: 'myClientId' }),*/
   ],
   styles: [`
     :host {
+      flex: 1;
       display: flex;
       flex-direction: column;
       background-color: #666;
@@ -28,11 +32,12 @@ import {SearchBoxComponent} from './component/search-box.component';
       background-color: #333;
     }
     .sebm-google-map-container {
+      width: 100%;
       height: 100%;
     }
   `],
   template: `
-    <div class="bg-gray p-y-3">
+    <div class="bg-gray p-y-1">
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-offset-3 col-md-6 box">
@@ -43,27 +48,31 @@ import {SearchBoxComponent} from './component/search-box.component';
     </div>
     
     <div class="map">
-      <sebm-google-map [latitude]="lat" [longitude]="lng"></sebm-google-map>
+      <google-map></google-map>
+      <!--<sebm-google-map [latitude]="lat" [longitude]="lng"></sebm-google-map>-->
     </div>
   `
 })
-export default class SearchRoute implements OnActivate  {
+export default class SearchRoute implements OnInit {
 
-  lat: number = 51.678418;
-  lng: number = 7.809007;
+  lat: number = 59.334591;
+  lng: number = 18.063240;
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, private route: ActivatedRoute) {
 
   }
 
-  routerOnActivate(curr: RouteSegment, prev?: RouteSegment, currTree?: RouteTree, prevTree?: RouteTree): void {
+  ngOnInit() {
+    navigator.geolocation.getCurrentPosition(pos => {
+      const {latitude, longitude} = pos.coords;
+      this.lat = latitude;
+      this.lng = longitude;
+      console.log(latitude, longitude);
+    });
   }
 
   handleSearch(term: string) {
-    this.store.dispatch({
-      type: SEARCH,
-      payload: term
-    });
+    this.store.dispatch(search(term));
   }
 
 }

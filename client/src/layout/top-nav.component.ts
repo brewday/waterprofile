@@ -8,7 +8,7 @@ import {Component, ChangeDetectionStrategy} from '@angular/core';
   ],
   template: `
     <nav class="navbar navbar-full navbar-dark bg-inverse navbar-cc">
-      <a class="navbar-brand" [routerLink]="['/']">BrewDay Water profiles</a>
+      <a class="navbar-brand" routerLink="/"><img src="/assets/img/logo.svg" /> Brew Day</a>
 
       <!-- Main Nav -->
       <ul class="nav navbar-nav">

@@ -4,6 +4,6 @@ import 'ts-helpers';
 require('zone.js/dist/zone');
 
 if (IS_DEV) {
-	Error.stackTraceLimit = Infinity;
-	require('zone.js/dist/long-stack-trace-zone');
+  Error.stackTraceLimit = Infinity;
+  require('zone.js/dist/long-stack-trace-zone');
 }

@@ -1,4 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {Subject} from 'rxjs/Subject';
 import {Control} from '@angular/common';
 
 @Component({
@@ -16,32 +18,22 @@ import {Control} from '@angular/common';
       <input
         class="search-input form-control form-control-lg"
         placeholder="Search"
-        [ngFormControl]="input"
+        [(ngModel)]="term"
         autofocus
+        
       />
       <small class="text-muted"></small>
     </div>
   `
 })
-export class SearchBoxComponent implements OnInit {
+export class SearchBoxComponent {
 
   @Input() term: string;
 
-  @Output() search = new EventEmitter<string>();
+  keyup$ = new Subject<string>();
 
-  private input = new Control();
-
-  constructor() {
-    this.input.valueChanges
-      .debounceTime(700)
-      .distinctUntilChanged()
-      .filter((v: string) => v && v !== 'null' && v !== 'undefined' && v.length > 1)
-      .subscribe((v: string) => this.search.emit(v));
-  }
-
-  ngOnInit() {
-    // Update value from incoming term
-    this.input.updateValue(this.term);
-  }
+  @Output() search: Observable<string> = this.keyup$
+    .debounceTime(700)
+    .distinctUntilChanged();
 
 }
